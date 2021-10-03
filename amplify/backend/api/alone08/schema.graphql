@@ -1,0 +1,8 @@
+type Present @model {
+  id: ID!
+  name: String!
+  image: String!
+  groupName: String!
+  presentCode: String!
+  description: String!
+}
