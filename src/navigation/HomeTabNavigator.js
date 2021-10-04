@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ExploreNavigator from './ExploreNavigator';
 import HomeScreen from '../screens/Home';
 import PresentRepositoryScreen from '../screens/PresentRepository';
@@ -14,21 +14,19 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 //import PostScreen from "../screens/PostScreen";
 //import SearchResultsMaps from '../screens/SearchResultsMap';
 
-
-
 const Tab = createBottomTabNavigator();
 
-const HomeTabNavigator = (props) => {
-  return ( 
+const HomeTabNavigator = props => {
+  return (
     <Tab.Navigator
       screenOptions={{
         activeTintColor: '#f15454',
       }}>
       <Tab.Screen
-        name={'Explore'}
+        name={'예약하기'}
         component={ExploreNavigator}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <Fontisto name="search" size={25} color={color} />
           ),
         }}
@@ -37,7 +35,7 @@ const HomeTabNavigator = (props) => {
         name={'PresentRepository'}
         component={PresentRepositoryScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <FontAwesome name="heart-o" size={25} color={color} />
           ),
         }}
@@ -46,7 +44,7 @@ const HomeTabNavigator = (props) => {
         name={'Airbnb'}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <FontAwesome5 name="airbnb" size={25} color={color} />
           ),
         }}
@@ -55,7 +53,7 @@ const HomeTabNavigator = (props) => {
         name={'Messages'}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <Feather name="message-square" size={25} color={color} />
           ),
         }}
@@ -64,7 +62,7 @@ const HomeTabNavigator = (props) => {
         name={'profile'}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <EvilIcons name="user" size={25} color={color} />
           ),
         }}
