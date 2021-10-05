@@ -27,6 +27,14 @@ const generateDates = (hours, minutes) => {
   }
   return date;
 };
+const generateDetailDate = (pickDate, hours, minutes) => {
+  const date = pickDate;
+  date.setHours(date.getHours() + hours);
+  if (minutes != null) {
+    date.setMinutes(minutes);
+  }
+  return date;
+};
 
 const sampleEvents = [
   {
@@ -79,8 +87,12 @@ const MyRefreshComponent = ({style}) => (
 const HomeScreen = () => {
   const [isReceived, setIsReceived] = useState(false);
   const navigation = useNavigation();
-  const {selectedDate, setSelectedDate} = useState(new Date(Date.now()));
-  const {weekEvents, setEvents} = useState(sampleEvents);
+  const [selectDate, setSelectDate] = useState(new Date(Date.now()));
+  const [weekEvents, setEvents] = useState(sampleEvents);
+  
+  const [sDate, setSDate] = useState(null);
+  const [eDate, setEDate] = useState(null);
+  const [eid, setEid] = useState(10);
   const onEventPress = ({id, color, startDate, endDate}) => {
     Alert.alert(
       `event ${color} - ${id}`,
@@ -89,22 +101,39 @@ const HomeScreen = () => {
   };
 
   const onGridClick = (event, startHour, date) => {
-    console.log(event);
-    console.log(startHour);
+    
     console.log(date);
+    if (sDate == null) {
 
-    const newEvent = [
-      {
-        id: 1,
-        description: 'Event 1',
-        startDate: createFixedWeekDate('Monday', startHour),
-        endDate: createFixedWeekDate(1, 14),
-        color: 'blue',
-      },
-    ];
-    setEvents([...weekEvents, newEvent]);
+      setSDate(generateDetailDate(date,startHour));
+      console.log("start ok!");
+      return; 
+    }
+    else
+    {
+      
+      console.log("end ok!");
+      setEid(eid + 1);
+      console.log("eid :" + eid);
+      const newEvent = 
+        {
+          id: eid,
+          description: 'Event 1',
+          startDate:sDate,
+          endDate: generateDetailDate(date,startHour),
+          color: 'blue',
+        }
+      
+      setEvents([...weekEvents, newEvent]);
+      console.log(weekEvents);
+      setSDate(null);
+      setEDate(null);
+    }
+    
+    //setSDate(null);
+    //setEDate(null);
     //const dateStr = date.toISOString().split('T')[0];
-    //Alert.alert(`Date: ${dateStr}\nStart hour: ${startHour}`);
+    //console.log(`Date: ${dateStr}\nStart hour: ${startHour}`);
   };
   const MyTodayComponent = ({formattedDate, textStyle}) => (
     <Text style={[textStyle, {fontWeight: 'bold'}]}>{formattedDate}</Text>
@@ -115,7 +144,7 @@ const HomeScreen = () => {
       <SafeAreaView style={styles.container}>
         <WeekView
           events={weekEvents}
-          selectedDate={selectedDate}
+          selectedDate={new Date()}
           numberOfDays={7}
           onEventPress={onEventPress}
           onGridClick={onGridClick}
@@ -130,7 +159,7 @@ const HomeScreen = () => {
           fixedHorizontally={showFixedComponent}
           showTitle={!showFixedComponent}
           showNowLine
-          isRefreshing={false}
+          isRefreshing={true}
           RefreshComponent={MyRefreshComponent}
           TodayHeaderComponent={MyTodayComponent}
         />
