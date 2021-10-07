@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
+
 import {
   View,
   Text,
-  Button,
+  Animated,
   Pressable,
   Platform,
   SafeAreaView,
@@ -11,7 +12,11 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-
+import { Portal } from 'react-native-portalize';
+import { Layout } from '../../components/layout/Layout';
+import { Header } from '../../components/header/Header';
+import { Button } from '../../components/button/Button';
+import { FixedContent } from '../../components/modals/FixedContent';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
@@ -138,32 +143,38 @@ const HomeScreen = () => {
   const MyTodayComponent = ({formattedDate, textStyle}) => (
     <Text style={[textStyle, {fontWeight: 'bold'}]}>{formattedDate}</Text>
   );
+  const modals = Array.from({ length: 8 }).map(_ => useRef(null).current);
+  const animated = useRef(new Animated.Value(0)).current;
+
+  const renderButtons = links => {
+    return links.map((link, i) => <Button key={i} onPress={() => modals[i].open()} name={link} />);
+  };
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.container}>
-        <WeekView
-          events={weekEvents}
-          selectedDate={new Date()}
-          numberOfDays={7}
-          onEventPress={onEventPress}
-          onGridClick={onGridClick}
-          headerStyle={styles.header}
-          headerTextStyle={styles.headerText}
-          hourTextStyle={styles.hourText}
-          eventContainerStyle={styles.eventContainer}
-          formatDateHeader={showFixedComponent ? 'ddd' : 'ddd DD'}
-          hoursInDisplay={16}
-          timeStep={60}
-          startHour={7}
-          fixedHorizontally={showFixedComponent}
-          showTitle={!showFixedComponent}
-          showNowLine
-          isRefreshing={true}
-          RefreshComponent={MyRefreshComponent}
-          TodayHeaderComponent={MyTodayComponent}
-        />
-      </SafeAreaView>
+      <View style={{ flex: 1, backgroundColor: '#000' }}>
+      <Layout
+        // Style here is used to create the iOS 13 modal presentation style for the AppleMusicPlayer example
+        style={{
+          borderRadius: animated.interpolate({ inputRange: [0, 1], outputRange: [0, 12] }),
+          transform: [
+            {
+              scale: animated.interpolate({ inputRange: [0, 1], outputRange: [1, 0.92] }),
+            },
+          ],
+          opacity: animated.interpolate({ inputRange: [0, 1], outputRange: [1, 0.75] }),
+        }}
+      >
+        <Header subheading="Run with React Navigation" />
+
+        {renderButtons([
+          'Fixed content',
+        ])}
+
+        <Portal>
+          <FixedContent ref={el => (modals[1] = el)} />
+        </Portal>
+      </Layout>
+    </View>
     </>
   );
 };
