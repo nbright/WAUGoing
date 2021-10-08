@@ -17,24 +17,20 @@ export const FixedContent = forwardRef((_, ref) => {
 
   const renderContent = () => (
     <View style={s.content}>
-      <Text style={s.content__subheading}>{'Last step'.toUpperCase()}</Text>
+      <Text style={s.content__subheading}>{'예약 정보'.toUpperCase()}</Text>
       <Text style={s.content__heading}>Send the message?</Text>
-
-
       <TouchableOpacity
         style={s.content__description}
         activeOpacity={0.75}
         onPress={() => setToggle(!toggle)}
       >
-        <Text>adjustToContentHeight {JSON.stringify(toggle)}</Text>
+      <Text>adjustToContentHeight {JSON.stringify(toggle)}</Text>
       </TouchableOpacity>
-
       <TextInput
         style={s.content__input}
         placeholder="Type your username"
         clearButtonMode="while-editing"
       />
-
       <TouchableOpacity style={s.content__button} activeOpacity={0.75} onPress={handleClose}>
         <Text style={s.content__buttonText}>{'Send'.toUpperCase()}</Text>
       </TouchableOpacity>

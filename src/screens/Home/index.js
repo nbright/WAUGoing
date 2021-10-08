@@ -99,10 +99,7 @@ const HomeScreen = () => {
   const [eDate, setEDate] = useState(null);
   const [eid, setEid] = useState(10);
   const onEventPress = ({id, color, startDate, endDate}) => {
-    Alert.alert(
-      `event ${color} - ${id}`,
-      `start: ${startDate}\nend: ${endDate}`,
-    );
+    modals[0].open()
   };
 
   const onGridClick = (event, startHour, date) => {
@@ -133,6 +130,8 @@ const HomeScreen = () => {
       console.log(weekEvents);
       setSDate(null);
       setEDate(null);
+
+      modals[0].open()
     }
     
     //setSDate(null);
@@ -143,7 +142,7 @@ const HomeScreen = () => {
   const MyTodayComponent = ({formattedDate, textStyle}) => (
     <Text style={[textStyle, {fontWeight: 'bold'}]}>{formattedDate}</Text>
   );
-  const modals = Array.from({ length: 8 }).map(_ => useRef(null).current);
+  const modals = Array.from({ length: 1 }).map(_ => useRef(null).current);
   const animated = useRef(new Animated.Value(0)).current;
 
   const renderButtons = links => {
@@ -151,30 +150,32 @@ const HomeScreen = () => {
   };
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: '#000' }}>
-      <Layout
-        // Style here is used to create the iOS 13 modal presentation style for the AppleMusicPlayer example
-        style={{
-          borderRadius: animated.interpolate({ inputRange: [0, 1], outputRange: [0, 12] }),
-          transform: [
-            {
-              scale: animated.interpolate({ inputRange: [0, 1], outputRange: [1, 0.92] }),
-            },
-          ],
-          opacity: animated.interpolate({ inputRange: [0, 1], outputRange: [1, 0.75] }),
-        }}
-      >
-        <Header subheading="Run with React Navigation" />
-
-        {renderButtons([
-          'Fixed content',
-        ])}
-
-        <Portal>
-          <FixedContent ref={el => (modals[1] = el)} />
-        </Portal>
-      </Layout>
-    </View>
+      <StatusBar barStyle="dark-content" />
+        <SafeAreaView style={styles.container}>
+          <WeekView
+            events={weekEvents}
+            selectedDate={new Date()}
+            numberOfDays={7}
+            onEventPress={onEventPress}
+            onGridClick={onGridClick}
+            headerStyle={styles.header}
+            headerTextStyle={styles.headerText}
+            hourTextStyle={styles.hourText}
+            eventContainerStyle={styles.eventContainer}
+            formatDateHeader={showFixedComponent ? 'ddd' : 'ddd DD'}
+            hoursInDisplay={16}
+            timeStep={60}
+            startHour={7}
+            fixedHorizontally={showFixedComponent}
+            showTitle={!showFixedComponent}
+            showNowLine
+            isRefreshing={true}
+            RefreshComponent={MyRefreshComponent}
+            TodayHeaderComponent={MyTodayComponent}
+          />
+           <FixedContent ref={el => (modals[0] = el)} />
+          
+    </SafeAreaView>
     </>
   );
 };
