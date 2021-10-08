@@ -14,25 +14,35 @@ export const FixedContent = forwardRef((_, ref) => {
       combinedRef.current.close();
     }
   };
-
   const renderContent = () => (
     <View style={s.content}>
-      <Text style={s.content__subheading}>{'예약 정보'.toUpperCase()}</Text>
+      <Text style={s.content__subheading}>{'예약 정보'}</Text>
       <Text style={s.content__heading}>Send the message?</Text>
       <TouchableOpacity
         style={s.content__description}
         activeOpacity={0.75}
         onPress={() => setToggle(!toggle)}
       >
-      <Text>adjustToContentHeight {JSON.stringify(toggle)}</Text>
+        <Text>adjustToContentHeight {JSON.stringify(toggle)}</Text>
       </TouchableOpacity>
       <TextInput
         style={s.content__input}
-        placeholder="Type your username"
+        placeholder="전화번호"
         clearButtonMode="while-editing"
       />
+      <TextInput
+        style={s.content__input}
+        placeholder="예약자"
+        clearButtonMode="while-editing"
+      />
+      <TextInput
+        style={s.content__input}
+        placeholder="예약내용"
+        clearButtonMode="while-editing"
+      />
+
       <TouchableOpacity style={s.content__button} activeOpacity={0.75} onPress={handleClose}>
-        <Text style={s.content__buttonText}>{'Send'.toUpperCase()}</Text>
+        <Text style={s.content__buttonText}>{'확인'.toUpperCase()}</Text>
       </TouchableOpacity>
     </View>
   );
