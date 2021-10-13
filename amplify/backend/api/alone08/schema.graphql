@@ -1,8 +1,11 @@
-type Present @model {
+type Reservation @model {
   id: ID!
-  name: String!
-  image: String!
-  groupName: String!
-  presentCode: String!
-  description: String!
+  roomId: ID!
+  clientName: String!
+  phone: String!
+  startDate: AWSDateTime!
+  endDate: AWSDateTime!
+  reservState: Int!
+  numOfPeople: Int
+  description: String
 }

@@ -173,7 +173,7 @@ const HomeScreen = () => {
             RefreshComponent={MyRefreshComponent}
             TodayHeaderComponent={MyTodayComponent}
           />
-           <FixedContent ref={el => (modals[0] = el)} />
+           <FixedContent id={eid} ref={el => (modals[0] = el)} />
           
     </SafeAreaView>
     </>

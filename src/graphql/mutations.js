@@ -1,51 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPresent = /* GraphQL */ `
-  mutation CreatePresent(
-    $input: CreatePresentInput!
-    $condition: ModelPresentConditionInput
+export const createReservation = /* GraphQL */ `
+  mutation CreateReservation(
+    $input: CreateReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    createPresent(input: $input, condition: $condition) {
+    createReservation(input: $input, condition: $condition) {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const updatePresent = /* GraphQL */ `
-  mutation UpdatePresent(
-    $input: UpdatePresentInput!
-    $condition: ModelPresentConditionInput
+export const updateReservation = /* GraphQL */ `
+  mutation UpdateReservation(
+    $input: UpdateReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    updatePresent(input: $input, condition: $condition) {
+    updateReservation(input: $input, condition: $condition) {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const deletePresent = /* GraphQL */ `
-  mutation DeletePresent(
-    $input: DeletePresentInput!
-    $condition: ModelPresentConditionInput
+export const deleteReservation = /* GraphQL */ `
+  mutation DeleteReservation(
+    $input: DeleteReservationInput!
+    $condition: ModelReservationConditionInput
   ) {
-    deletePresent(input: $input, condition: $condition) {
+    deleteReservation(input: $input, condition: $condition) {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt

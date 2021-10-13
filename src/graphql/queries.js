@@ -1,33 +1,39 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPresent = /* GraphQL */ `
-  query GetPresent($id: ID!) {
-    getPresent(id: $id) {
+export const getReservation = /* GraphQL */ `
+  query GetReservation($id: ID!) {
+    getReservation(id: $id) {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const listPresents = /* GraphQL */ `
-  query ListPresents(
-    $filter: ModelPresentFilterInput
+export const listReservations = /* GraphQL */ `
+  query ListReservations(
+    $filter: ModelReservationFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPresents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listReservations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        image
-        groupName
-        presentCode
+        roomId
+        clientName
+        phone
+        startDate
+        endDate
+        reservState
+        numOfPeople
         description
         createdAt
         updatedAt

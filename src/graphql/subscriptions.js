@@ -1,42 +1,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePresent = /* GraphQL */ `
-  subscription OnCreatePresent {
-    onCreatePresent {
+export const onCreateReservation = /* GraphQL */ `
+  subscription OnCreateReservation {
+    onCreateReservation {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdatePresent = /* GraphQL */ `
-  subscription OnUpdatePresent {
-    onUpdatePresent {
+export const onUpdateReservation = /* GraphQL */ `
+  subscription OnUpdateReservation {
+    onUpdateReservation {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeletePresent = /* GraphQL */ `
-  subscription OnDeletePresent {
-    onDeletePresent {
+export const onDeleteReservation = /* GraphQL */ `
+  subscription OnDeleteReservation {
+    onDeleteReservation {
       id
-      name
-      image
-      groupName
-      presentCode
+      roomId
+      clientName
+      phone
+      startDate
+      endDate
+      reservState
+      numOfPeople
       description
       createdAt
       updatedAt

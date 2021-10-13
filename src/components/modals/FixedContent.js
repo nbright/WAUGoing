@@ -4,7 +4,8 @@ import { Modalize } from 'react-native-modalize';
 
 import { useCombinedRefs } from '../../utils/use-combined-refs';
 
-export const FixedContent = forwardRef((_, ref) => {
+export const FixedContent = forwardRef((props, ref) => {
+  console.log(props);
   const modalizeRef = useRef(null);
   const combinedRef = useCombinedRefs(ref, modalizeRef);
   const [toggle, setToggle] = useState(true);
