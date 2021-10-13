@@ -1,0 +1,20 @@
+mutation ReservInsert1 {
+  createReservation(input: {clientName: "김민성", description: "주절주절", endDate: "2021-10-13T17:10:00z", roomId: "1", reservState: 2, phone: "01077308174", startDate: "2021-10-13T10:10:00z"}) {
+    id
+  }
+}
+mutation ReservInsert2 {
+  createReservation(input: {clientName: "김예약", description: "잘해주세요.", endDate: "2021-10-17T07:00:00z", roomId: "1", reservState: 2, phone: "01077308174", startDate: "2021-10-16T09:00:00z"}) {
+    id
+  }
+}
+mutation ReservInsert3 {
+  createReservation(input: {clientName: "김가일", description: "잘해요.", endDate: "2021-10-20T07:00:00z", roomId: "1", reservState: 1, phone: "01077308174", startDate: "2021-10-19T09:00:00z"}) {
+    id
+  }
+}
+mutation ReservInsert4 {
+  createReservation(input: {clientName: "김가이", description: "잘해주.", endDate: "2021-10-15T07:00:00z", roomId: "1", reservState: 3, phone: "01077308174", startDate: "2021-10-13T09:00:00z"}) {
+    id
+  }
+}

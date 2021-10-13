@@ -19,7 +19,9 @@ import { Button } from '../../components/button/Button';
 import { FixedContent } from '../../components/modals/FixedContent';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {API, graphqlOperation} from 'aws-amplify';
+
+import { API, graphqlOperation } from 'aws-amplify';
+import { listReservations } from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 import WeekView, {createFixedWeekDate} from 'react-native-week-view';
@@ -90,6 +92,9 @@ const MyRefreshComponent = ({style}) => (
   <ActivityIndicator style={style} color="red" size="large" />
 );
 const HomeScreen = () => {
+  const reservations = API.graphql(graphqlOperation(listReservations));
+  console.log(reservations);
+
   const [isReceived, setIsReceived] = useState(false);
   const navigation = useNavigation();
   const [selectDate, setSelectDate] = useState(new Date(Date.now()));
